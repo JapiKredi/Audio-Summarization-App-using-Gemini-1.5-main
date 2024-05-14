@@ -2,8 +2,7 @@ import streamlit as st
 from pydub import AudioSegment
 import tempfile
 import os
-import google.generativeai as genai
-
+pip install -U google-generativeai
 from dotenv import load_dotenv
 
 load_dotenv()

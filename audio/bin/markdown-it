@@ -1,4 +1,4 @@
-#!/Users/jasper/Downloads/Audio-Summarization-App-using-Gemini-1.5-main/audio/bin/python3.10
+#!/Users/jasper/Downloads/Audio-Summarization-App-using-Gemini-1.5-main/audio/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
