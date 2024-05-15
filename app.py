@@ -2,6 +2,7 @@ import streamlit as st
 from pydub import AudioSegment
 import tempfile
 import os
+import google.generativeai as genai
 
 from dotenv import load_dotenv
 
@@ -11,16 +12,26 @@ load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
 
+
 def summarize_audio(audio_file_path):
     """Summarize the audio using Google's Generative API."""
+    
+    # Initialize the GenerativeModel with the specified model
     model = genai.GenerativeModel("models/gemini-1.5-pro-latest")
+    
+    # Upload the audio file and get a reference to it
     audio_file = genai.upload_file(path=audio_file_path)
+    
+    # Generate the summary of the audio file using the model
+    # The model is given a prompt ("Please summarize the following audio.") and the audio file
     response = model.generate_content(
         [
             "Please summarize the following audio.",
             audio_file
         ]
     )
+    
+    # Return the text of the generated summary
     return response.text
 
 def save_uploaded_file(uploaded_file):
