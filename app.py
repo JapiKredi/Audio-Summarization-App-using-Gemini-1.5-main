@@ -36,13 +36,25 @@ def summarize_audio(audio_file_path):
 
 def save_uploaded_file(uploaded_file):
     """Save uploaded file to a temporary file and return the path."""
+    
     try:
+        # Create a temporary file with the same extension as the uploaded file
+        # The 'delete=False' argument ensures the file is not deleted when closed
         with tempfile.NamedTemporaryFile(delete=False, suffix='.' + uploaded_file.name.split('.')[-1]) as tmp_file:
+            
+            # Write the contents of the uploaded file to the temporary file
             tmp_file.write(uploaded_file.getvalue())
+            
+            # Return the path of the temporary file
             return tmp_file.name
+            
     except Exception as e:
+        # If an error occurs, display an error message in the Streamlit app
         st.error(f"Error handling uploaded file: {e}")
+        
+        # Return None to indicate that the file could not be saved
         return None
+
 
 # Streamlit app interface
 st.title('Audio Summarization App')
